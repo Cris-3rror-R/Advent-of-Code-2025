@@ -1,3 +1,4 @@
+//El arreglo clave van los datos para encontrar la contraseña
 public class Dia_1_1 {
 
     public static int Movimiento(String Mov) {
