@@ -1,0 +1,52 @@
+//El arreglo clave es para añadir los datos para la contraseña.
+import java.util.Stack;
+
+public class Dia_3_2 {
+
+    public static int Buscar(int mayor, String lista){
+        return 0;
+    }
+
+    public static void main(String[] args) {
+        long Contrasena = 0L;
+        String Clave[] = {
+            "987654321111111",
+            "811111111111119",
+            "234234234234278",
+            "818181911112111"
+        };
+        for (int x = 0; x < Clave.length; x++){
+            String bateria = Clave[x];
+            int mayor = 0;
+            for (int i = 0; i < bateria.length(); i++){
+                int val = Character.getNumericValue(bateria.charAt(i));
+                if (val > mayor) mayor = val;
+            }
+
+            int inicio = Buscar(mayor, bateria);
+            int k = 12;
+            int n = bateria.length();
+
+            Stack<Character> pila = new Stack<>();
+
+            for (int i = inicio; i < n; i++){
+                char dig = bateria.charAt(i);
+                while (!pila.isEmpty() && pila.size() + (n - i) > k && pila.peek() < dig) {
+                    pila.pop();
+                }
+                if (pila.size() < k) {
+                    pila.push(dig);
+                }
+            }
+            StringBuilder sb = new StringBuilder();
+            for (char c : pila) sb.append(c);
+            long valor = 0L;
+            if (sb.length() > 0) {
+                valor = Long.parseLong(sb.toString());
+            }
+            Contrasena += valor;
+        }
+
+        System.out.println(Contrasena);
+    }
+}
